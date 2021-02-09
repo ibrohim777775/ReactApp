@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.page{
+  margin: 0 auto;
+  width: 800px;
+  padding: 25px 25px;
+  display: flex;
+  justify-content: center;
+}
+.clock{
+  display: flex;
+}
+.clock div{
+  margin: 25px;
+  font-size: 85px;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px 0px #000;
+}
+.nuqta{
+  padding: 25px 60px!important;
+  animation-name: example;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes example{
+  from{color: #f1f1f1;}
+  to{color: #000;}
+}
