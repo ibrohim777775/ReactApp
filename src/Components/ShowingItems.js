@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import items from './Items'
-import './showingItems.css';
+import '../Styles/showingItems.css';
 
 class ShowingItems extends Component {
     constructor (props){
@@ -13,11 +13,11 @@ class ShowingItems extends Component {
         // console.dir(event.target)
         const key = event.target.dataset['id'];
         console.log(key);
-        this.setState(prevState =>{
-            //  data: this.state.data.filter((_, i) => i !== key)
-             let newData = prevState.data.slice() //copy array from prevState
-      newData.splice(key, 1) // remove element
-      return {data: newData} // update state
+        this.setState({
+             data: this.state.data.filter((_, i) => i !== key)
+    //          let newData = prevState.data.slice() //copy array from prevState
+    //   newData.splice(key, 1) // remove element
+    //   return {data: newData} // update state
         })
     }
     render() {
