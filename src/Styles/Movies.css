@@ -1,11 +1,20 @@
 body{
     background-color: #333333;
     color: #fff;
+    margin: 25px 0 45px;
 }
 .movies{
-    /* display: flex; */
-    /* justify-content: center; */
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.navbar{
+    display: flex;
+    justify-content: center;
+}
+a{
+    color: #fff;
+    margin-right: 15px;
+    text-decoration: none;
 }
 .movies__inner{
     margin-top: 50px;
@@ -24,6 +33,19 @@ body{
 }
 .movies__table th, td{
     padding: 10px 25px;
+}
+th{
+    /* display: flex; */
+    align-items: center;
+}
+th:nth-child(2){
+    width: 200px;
+}
+th p{
+    margin: 10px 5px 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 400;
 }
 .movies__like{
     color: initial;
@@ -53,4 +75,13 @@ body{
     cursor: pointer;
     font-size: 22px;
 
+}
+select {
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+select:focus{
+    outline: none;
+    border: none;
 }

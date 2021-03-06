@@ -1,0 +1,16 @@
+.navbar{
+  display: flex;
+  margin-top: 103px;
+  margin-right: 30px;
+}
+ul li{
+  list-style-type: none;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px 0 #fff;
+  transition: all .3s;
+}
+ul li:hover{
+  color: black;
+}

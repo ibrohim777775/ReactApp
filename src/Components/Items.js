@@ -1,9 +1,31 @@
 let items = [
-    {id: 1, title: 'Die Hard', genre: 'Action', stock: 5, rate: 2.5, isLike : true},
-    {id: 2, title: 'Terminator', genre: 'Action', stock: 6, rate: 2.5, isLike : true},
-    {id: 3, title: 'Get Out', genre: 'Thriller', stock: 8, rate: 3.5, isLike : false},
-    {id: 4, title: 'Trip to Italy', genre: 'Comedy', stock: 7, rate: 3.5, isLike : true},
-    {id: 5, title: 'Airplane', genre: 'Comedy', stock: 7, rate: 3.5, isLike : false}
+    { id: 1, title: 'Die Hard', genre: 'Action', stock: 55, rate: 2.5, isLike: true },
+    { id: 2, title: 'Terminator', genre: 'Action', stock: 69, rate: 4, isLike: true },
+    { id: 3, title: 'Get Out', genre: 'Thriller', stock: 80, rate: 4.5, isLike: false },
+    { id: 4, title: 'Trip to Italy', genre: 'Comedy', stock: 75, rate: 3.5, isLike: true },
+    { id: 5, title: 'Airplane', genre: 'Comedy', stock: 72, rate: 5, isLike: false },
+    { id: 6, title: 'Wonder Woman 1984', genre: 'Action', stock: 69, rate: 4, isLike: false },
+    { id: 7, title: 'Monster Hunter', genre: 'Action', stock: 71, rate: 4.5, isLike: false },
+    { id: 8, title: 'Below Zero', genre: 'Action', stock: 64, rate: 3.5, isLike: true },
+    { id: 9, title: 'Soul', genre: 'Comedy', stock: 83, rate: 4.3, isLike: true },
+    { id: 10, title: 'The Little Things', genre: 'Thriller', stock: 63, rate: 3.8, isLike: false },
+    { id: 11, title: 'Airplane', genre: 'Comedy', stock: 52, rate: 5, isLike: false },
+    { id: 12, title: 'Honest Thief', genre: 'Thriller', stock: 66, rate: 3.9, isLike: true },
+    { id: 13, title: 'Airplane', genre: 'Comedy', stock: 47, rate: 5, isLike: false },
+    { id: 14, title: 'Legionnaire\'s Trail', genre: 'History', stock: 63, rate: 3.8, isLike: true },
+    { id: 15, title: 'Airplane', genre: 'Comedy', stock: 45, rate: 5, isLike: false },
+    { id: 16, title: 'Squared Love', genre: 'Comedy', stock: 63, rate: 3.5, isLike: false },
+    { id: 17, title: 'Airplane', genre: 'Comedy', stock: 32, rate: 5, isLike: false },
+    { id: 18, title: 'The Viking War', genre: 'History', stock: 51, rate: 45, isLike: true },
+    { id: 19, title: 'Airplane', genre: 'Comedy', stock: 47, rate: 5, isLike: false },
+    { id: 20, title: 'Jumanji: The Next Level', genre: 'Comedy', stock: 70, rate: 5, isLike: true },
+    { id: 21, title: 'The Unfamiliar', genre: 'Thriller', stock: 61, rate: 3.8, isLike: true },
+    { id: 22, title: 'The King', genre: 'History', stock: 72, rate: 5, isLike: true },
+    { id: 23, title: 'Airplane', genre: 'Comedy', stock: 68, rate: 5, isLike: false },
+    { id: 24, title: 'Dory \'s Reef Cam', genre: 'Comedy', stock: 58, rate: 3.5, isLike: false },
+    { id: 25, title: 'Airplane', genre: 'Comedy', stock: 55, rate: 5, isLike: false },
+    { id: 26, title: 'Airplane', genre: 'Comedy', stock: 70, rate: 5, isLike: false },
+
 
 ]
 export default items;

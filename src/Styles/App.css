@@ -40,12 +40,13 @@
 .page{
   margin: 0 auto;
   width: 800px;
-  padding: 25px 25px;
+  padding: 5px 25px;
   display: flex;
   justify-content: center;
 }
 .clock{
   display: flex;
+  color: #282c34;
 }
 .clock div{
   margin: 25px;
@@ -54,6 +55,19 @@
   background-color: #f1f1f1;
   border-radius: 8px;
   box-shadow: 1px 1px 5px 0px #000;
+}
+.clock__item{
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+.clock__btn{
+  width: 150px;
+  padding: 15px;
+  cursor: pointer;
+}
+.clock--notShow{
+  display: none;
 }
 .nuqta{
   padding: 25px 60px!important;
