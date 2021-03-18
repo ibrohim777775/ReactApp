@@ -5,6 +5,7 @@ export const StyledForm = styled.form`
   margin-top: 50px;
   display:flex;
   flex-direction: column;
+  width: 500px;
   & label{
     margin: 10px;
 

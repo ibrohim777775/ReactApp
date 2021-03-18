@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AiTwotoneLike, AiTwotoneDislike } from 'react-icons/ai';
-import { BiSortAZ, BiSortZA, BiSort } from 'react-icons/bi';
+import { BiSortAZ, BiSortZA, BiSort, BiNoEntry } from 'react-icons/bi';
 import { FaSortNumericDown, FaSortNumericUpAlt } from 'react-icons/fa';
 import _, { filter } from 'lodash';
 import '../Styles/Movies.css';
@@ -13,6 +13,7 @@ import NewItem from '../Components/NewItem';
 import { Redirect, Route } from 'react-router';
 import Clock from '../Components/Clock';
 import { Link } from 'react-router-dom';
+import CircleClock from '../Components/CircleClock';
 
 
 class Movies extends Component {
@@ -31,7 +32,8 @@ class Movies extends Component {
                 stock: '',
                 rate: '',
                 isLike: false
-            }
+            },
+            optionDisplay: 'none'
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -148,27 +150,36 @@ class Movies extends Component {
         this.setState((prevState) => { prevState.newItem.isLike = isLike });
         console.log(this.state.newItem.isLike)
     }
+    showOptions = () => {
+        this.setState({ optionDisplay: 'block' })
+    }
     render() {
-        const { data, fakeData, paginationSize, pageRealNumber, sortColum } = this.state;
+        const { data, fakeData, paginationSize, pageRealNumber, sortColum, optionDisplay } = this.state;
         const { title, stock, rate, islike } = this.state.newItem;
         const page = data.length;
-        const { sortAtoZ, sortIcon, sortIconForNumber, onClickTheadHandler, addItemHandler, handleChange, clickRadioHandler } = this;
+        const { sortAtoZ, sortIcon, sortIconForNumber, onClickTheadHandler, addItemHandler, handleChange, clickRadioHandler, showOptions } = this;
 
         const result = paginate(data, pageRealNumber, paginationSize);
         let updatedData = _.orderBy(result, [sortColum.path], [sortColum.order]);
-
+        let option = 'none';
         return (
             <div>
                 <div className='navbar'>
-                    <Link to='/'>Home</Link>
+                    <Link to='/movies'>Home</Link>
                     <Link to='/clock'>show clock</Link>
-                    <Link to='/movies'>Movies table</Link>
-                    <Link to='/movies/filter'>Filter Movies</Link>
-                    <Link to='/movies/add'>Add movies</Link>
+                    {/* <Link to='/movies'>Movies table</Link> */}
+                    {/* <Link to='/movies/filter'>Filter Movies</Link> */}
+                    {/* <Link to='/movies/add'>Add movies</Link> */}
+                    <Link to='/circle_clock'>Circle clock</Link>
                 </div>
                 <div className='movies'>
-                    <Redirect to='/'></Redirect>
+                    <Redirect to='/movies'>
 
+
+                    </Redirect>
+                    <Route path='/circle_clock'>
+                        <CircleClock />
+                    </Route>
 
                     <Route exact path='/'>
                     </Route>
@@ -177,10 +188,11 @@ class Movies extends Component {
                         <Clock />
                     </Route>
                     <Route path='/movies/filter'>
-                        <NavMovies filtrHandler={this.filtrHandler} />
                     </Route>
                     <Route path='/movies'>
+                        <NavMovies filtrHandler={this.filtrHandler} />
                         <div className='movies__inner'>
+
                             <h2>Showing {data.length} movies list </h2>
                             <table className='movies__table'>
                                 <MoviesTableHead onClickTheadHandler={onClickTheadHandler} sortAtoZ={sortAtoZ} sortIcon={sortIcon} sortIconForNumber={sortIconForNumber} />
@@ -200,6 +212,14 @@ class Movies extends Component {
                                                     </button>
                                                 </td>
                                                 <td><button onClick={() => this.deleteHandler(item.id)} className='movie__btn'>DELETE</button></td>
+                                                <td>
+                                                    <h5 className='options__title'>Options</h5>
+                                                    <ul className='options'>
+                                                        <li className='option__list'>update movie</li>
+                                                        <li className='option__list'>add movie</li>
+                                                        <li className='option__list'>delete</li>
+                                                    </ul>
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -221,16 +241,17 @@ class Movies extends Component {
                         </div>
 
                     </Route>
-                    <Route path='/movies/add'>
-                        <NewItem clickRadioHandler={clickRadioHandler} handleChange={handleChange} addItemHandler={addItemHandler} stock={stock} rate={rate} isLike={islike} title={title} />
 
-                    </Route>
 
 
 
 
 
                 </div >
+                <Route exact path='/movies/add'>
+                    <NewItem clickRadioHandler={clickRadioHandler} handleChange={handleChange} addItemHandler={addItemHandler} stock={stock} rate={rate} isLike={islike} title={title} />
+
+                </Route>
             </div>
 
         );

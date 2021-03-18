@@ -2,6 +2,8 @@ body{
     background-color: #333333;
     color: #fff;
     margin: 25px 0 45px;
+     display: flex;
+    justify-content: center;
 }
 .movies{
     display: flex;
@@ -24,7 +26,7 @@ a{
     align-items: center;
 }
 .movies__table{
-    max-width: 800px;
+    /* max-width: 800px; */
 }
 .movies__table, th, td{
     border: 1px solid #000;
@@ -84,4 +86,22 @@ select {
 select:focus{
     outline: none;
     border: none;
+}
+.options__title{
+    cursor:pointer;
+    margin: 0;
+    padding: 0;
+}
+.options{
+    display: none;
+}
+.options__title:hover  .options{
+    display: block;
+    color: blue;
+}
+.option__list{
+    margin: 5px 0;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
