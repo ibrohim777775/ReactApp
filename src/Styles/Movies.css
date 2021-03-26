@@ -87,21 +87,50 @@ select:focus{
     outline: none;
     border: none;
 }
+.option__items{
+    padding: 0 10px;
+    margin: 0;
+}
 .options__title{
     cursor:pointer;
     margin: 0;
     padding: 0;
 }
+.test{
+    position: relative;
+}
 .options{
     display: none;
+    padding: 0;
+    margin: 0;
+    /* left: -30px; */
+    right: -137px;
+    top: -3px;
+    position: absolute;
+    z-index: 3;
+    width: 105%;
+    box-shadow: 2px 2px 5px 0 #f1f1f1;
+    /* width: 200%; */
+    /* background-color: #fff; */
 }
-.options__title:hover  .options{
+
+.test:hover  .options{
     display: block;
-    color: blue;
+    /* color: blue; */
+    color: #f1f1f1;
+
+    margin-top: 2px;
 }
 .option__list{
     margin: 5px 0;
     border: none;
     box-shadow: none;
     padding: 0;
+}
+.test__items{
+    color: #f1f1f1;
+    padding: 5px 0;
+}
+.test__items:hover{
+    color: black;
 }

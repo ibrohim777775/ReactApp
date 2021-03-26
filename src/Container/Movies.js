@@ -3,7 +3,6 @@ import { AiTwotoneLike, AiTwotoneDislike } from 'react-icons/ai';
 import { BiSortAZ, BiSortZA, BiSort, BiNoEntry } from 'react-icons/bi';
 import { FaSortNumericDown, FaSortNumericUpAlt } from 'react-icons/fa';
 import _, { filter } from 'lodash';
-import '../Styles/Movies.css';
 import items from '../Components/Items';
 import Pagination from '../Components/Pagination';
 import paginate from '../Components/PaginateNumbers';
@@ -14,6 +13,9 @@ import { Redirect, Route } from 'react-router';
 import Clock from '../Components/Clock';
 import { Link } from 'react-router-dom';
 import CircleClock from '../Components/CircleClock';
+import '../Styles/Movies.css';
+import MovieInfo from '../Components/MovieInfo';
+import Users from '../Components/Users';
 
 
 class Movies extends Component {
@@ -29,6 +31,7 @@ class Movies extends Component {
             newItem: {
                 id: '',
                 title: '',
+                genre: '',
                 stock: '',
                 rate: '',
                 isLike: false
@@ -153,11 +156,39 @@ class Movies extends Component {
     showOptions = () => {
         this.setState({ optionDisplay: 'block' })
     }
+    updateMovie = (e, id) => {
+        e.preventDefault();
+        // console.log(id, 'iddd');
+        let data = this.state.data.filter((i) => i.id === +id)[0];
+        let newItem = this.state.newItem;
+        let item = [];
+        newItem.id = +id;
+        for (let key in data) {
+            if (newItem[key] === data[key]) {
+                item[key] = data[key]
+                console.log(item[key]);
+            }
+            if (newItem[key].length === 0) {
+                item[key] = data[key]
+            } else {
+                item[key] = newItem[key]
+            }
+        };
+        let secondData = [];
+        // secondData[0] = item;
+        secondData = [...this.state.data.filter((i) => i.id !== +id)];
+        secondData.unshift(item);
+        console.log(secondData, 'ohirgi')
+        this.setState({ data: secondData });
+        // console.log(newItem, 'yangi');
+        // console.log(item, 'ohirgi')
+        // setTimeout(console.log(data), 2000);
+    }
     render() {
-        const { data, fakeData, paginationSize, pageRealNumber, sortColum, optionDisplay } = this.state;
+        const { data, fakeData, paginationSize, pageRealNumber, sortColum, optionDisplay, newItem } = this.state;
         const { title, stock, rate, islike } = this.state.newItem;
         const page = data.length;
-        const { sortAtoZ, sortIcon, sortIconForNumber, onClickTheadHandler, addItemHandler, handleChange, clickRadioHandler, showOptions } = this;
+        const { sortAtoZ, sortIcon, sortIconForNumber, onClickTheadHandler, addItemHandler, handleChange, clickRadioHandler, showOptions, updateMovie } = this;
 
         const result = paginate(data, pageRealNumber, paginationSize);
         let updatedData = _.orderBy(result, [sortColum.path], [sortColum.order]);
@@ -171,12 +202,10 @@ class Movies extends Component {
                     {/* <Link to='/movies/filter'>Filter Movies</Link> */}
                     {/* <Link to='/movies/add'>Add movies</Link> */}
                     <Link to='/circle_clock'>Circle clock</Link>
+                    <Link to='/users'>Users</Link>
                 </div>
                 <div className='movies'>
-                    <Redirect to='/movies'>
-
-
-                    </Redirect>
+                    <Route exact path='/users' component={Users} />
                     <Route path='/circle_clock'>
                         <CircleClock />
                     </Route>
@@ -189,7 +218,26 @@ class Movies extends Component {
                     </Route>
                     <Route path='/movies/filter'>
                     </Route>
-                    <Route path='/movies'>
+                    <Route exact path='/movies/add'>
+                        <NewItem clickRadioHandler={clickRadioHandler} handleChange={handleChange} addItemHandler={addItemHandler} stock={stock} rate={rate} isLike={islike} title={title} />
+
+                    </Route>
+
+                    <Route
+                        exact
+                        path='/movies/update/:id'
+                        render={(props) => (
+                            <MovieInfo
+                                item={updatedData}
+                                {...props}
+                                updateMovie={updateMovie}
+                                handleChange={handleChange}
+                                newItem={newItem}
+                            />
+                        )}
+                    />
+
+                    <Route exact path='/movies'>
                         <NavMovies filtrHandler={this.filtrHandler} />
                         <div className='movies__inner'>
 
@@ -202,7 +250,11 @@ class Movies extends Component {
                                         {updatedData.map(item => (
                                             <tr key={item.id} className='movies__item'>
                                                 <td>{item.id}</td>
-                                                <td>{item.title}</td>
+                                                <td>
+                                                    <Link to={'/movies/update/' + item.id} >
+                                                        {item.title}
+                                                    </Link>
+                                                </td>
                                                 <td>{item.genre}</td>
                                                 <td>{item.stock}</td>
                                                 <td>{item.rate}</td>
@@ -212,13 +264,31 @@ class Movies extends Component {
                                                     </button>
                                                 </td>
                                                 <td><button onClick={() => this.deleteHandler(item.id)} className='movie__btn'>DELETE</button></td>
-                                                <td>
-                                                    <h5 className='options__title'>Options</h5>
-                                                    <ul className='options'>
-                                                        <li className='option__list'>update movie</li>
-                                                        <li className='option__list'>add movie</li>
-                                                        <li className='option__list'>delete</li>
+                                                <td className='test'>
+                                                    <ul className='option__items'>
+                                                        <li className='option__list '>
+                                                            <p className='options__title'>Options</p>
+                                                            <ul className='options'>
+                                                                <li className='option__list test__items'>
+                                                                    <Link to={'/movies/update/' + item.id} >
+                                                                        update movie
+
+                                                                    </Link>
+                                                                </li>
+                                                                <li className='option__list'>
+                                                                    <Link to='/movies/add'>
+                                                                        add movie
+
+                                                                    </Link>
+                                                                </li>
+                                                                <li onClick={() => this.deleteHandler(item.id)} className='option__list'>delete</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li className='option__list'>
+
+                                                        </li>
                                                     </ul>
+
                                                 </td>
                                             </tr>
                                         ))}
@@ -241,6 +311,8 @@ class Movies extends Component {
                         </div>
 
                     </Route>
+                    <Redirect to='/movies' />
+
 
 
 
@@ -248,11 +320,8 @@ class Movies extends Component {
 
 
                 </div >
-                <Route exact path='/movies/add'>
-                    <NewItem clickRadioHandler={clickRadioHandler} handleChange={handleChange} addItemHandler={addItemHandler} stock={stock} rate={rate} isLike={islike} title={title} />
 
-                </Route>
-            </div>
+            </div >
 
         );
     }
